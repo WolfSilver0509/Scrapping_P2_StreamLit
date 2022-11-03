@@ -70,7 +70,7 @@ def etape2(url_horror):
     all_books_horror = []
     all_links_horror = get_all_links_book_to_horror(get_url_horror(url_horror))
     all_books_horror = info_extract(all_links_horror, all_books_horror)
-
+    print("h")
 
     # --------------- Fichier CSV pour la catg Horror  -----------------
     # Créer une liste pour les en-têtes
@@ -104,19 +104,20 @@ def etape2(url_horror):
                              books_horror['review_rating'],
                              get_link_image(books_horror, 2),
                              books_horror['number_available']])
+        print("hello")
 
-            image_url = get_link_image(books_horror, 2)
-            filename = 'Horror/' + books_horror['title'].replace("?", "") + ".jpg"
-            urllib.request.urlretrieve(image_url, filename)
-            clé2 = "heloise"
+        image_url = get_link_image(books_horror, 2)
+        filename = 'Horror/' + books_horror['title'].replace("?", "") + ".jpg"
+        urllib.request.urlretrieve(image_url, filename)
+    clé2 = "2"
 
 
-            with open('Horror/data_horror.csv') as g:
-                HALOISE =  st.download_button(label='Heloise', data=open('Horror/data_horror.csv'), file_name='data_horror.csv',
-                               mime='text/csv', key=clé2)
-            #     st.download_button(label = 'Heloise', data = g, file_name='data_horror.csv', mime='text/csv', key= clé2)
-                st.text("💾 🧛  Votre fichier CSV sur la catégorie HORROR viens d'être crée.")
-                st.text("Vous pouvez le télécharger !")
+    with open('Horror/data_horror.csv') as g:
+        button =  st.download_button(label='Download Horror CSV', data=open('Horror/data_horror.csv'), file_name='data_horror.csv',
+                       mime='text/csv', key=clé2)
+    #     st.download_button(label = 'Heloise', data = g, file_name='data_horror.csv', mime='text/csv', key= clé2)
+        st.text("💾 🧛  Votre fichier CSV sur la catégorie HORROR viens d'être crée.")
+        st.text("Vous pouvez le télécharger !")
 
     #print(" 💾 🧛  Votre fichier CSV sur la catégorie HORROR viens d'être crée. Vous pouvez le télécharger !")
 

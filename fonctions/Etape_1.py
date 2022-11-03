@@ -91,6 +91,7 @@ def etape1(url_page_produit):
 
     print(csv_createur())
     clé = "livre"
+    print(clé)
     with open('Livre1/data_' + category + '.csv') as f:
         st.download_button('Download CSV Livre ', f, 'livre.csv', 'text/csv', key = "Livre")
 
