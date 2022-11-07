@@ -2,7 +2,7 @@
 import streamlit as st
 import requests
 from bs4 import BeautifulSoup as bs
-
+import random
 import os
 # os création de dossier
 # importation de l'image
@@ -21,15 +21,15 @@ st.title('Projet Scrapping P2 DA Python ')
 # rentrer l'url d'une page produit dans "l'URL"
 url_page_produit = ' http://books.toscrape.com/catalogue/sharp-objects_997/index.html'
 
-# création du dossier en locale auto
-# if not os.path.isdir('Livre1'):
-#     os.system('mkdir Livre1')
-#
-# if not os.path.isdir('Horror'):
-#     os.system('mkdir Horror')
-#
-# if not os.path.isdir('category'):
-#     os.system('mkdir category')
+#création du dossier en locale auto
+if not os.path.isdir('Livre1'):
+    os.system('mkdir Livre1')
+
+if not os.path.isdir('Horror'):
+    os.system('mkdir Horror')
+
+if not os.path.isdir('category'):
+    os.system('mkdir category')
 
 
 # Récupération de l'URL de la catégorie Horror
@@ -65,20 +65,28 @@ for category in nom_catgs:
 def etape3(links_catgs):
     st.subheader("📜 📖 Toutes les catégories de tout les livres du site  📖")
 
-    option = st.selectbox(
-        'Quel catégorie souhaitez-vous extraire ?',
-        (nom_catgs))
-
-    st.write('Vous avez selectionner :', option)
-    clé3 = "3"
+    # option = st.selectbox(
+    #     'Quel catégorie souhaitez-vous extraire ?',
+    #     (nom_catgs))
+    #
+    # st.write('Vous avez selectionner :', option)
+    # clé3="3"
     for name in nom_catgs:
-        if option == name:
+        option = st.selectbox(
+            'Quel catégorie souhaitez-vous extraire ?',
+            (nom_catgs))
+
+        st.write('Vous avez selectionner :', option)
+        clé3 = "3"
+        if option ==  name:
+            print(option)
             with open('category/'+ name + '/data_'+ name + '.csv') as all:
                 button = st.download_button(label='Download ' + name + '  CSV', data=open('category/' + name + '/data_' + name + '.csv'),
                                             file_name= 'data_' + name + '.csv',
                                             mime='text/csv', key=clé3)
                 st.text(f'💾 🧛  Votre fichier CSV sur la catégorie ' + name + ' viens d\'être crée.')
                 st.text("Vous pouvez le télécharger !")
+
 
 
 
