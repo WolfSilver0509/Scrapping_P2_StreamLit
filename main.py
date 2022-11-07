@@ -61,7 +61,27 @@ for category in nom_catgs:
     if not os.path.isdir('category/' + category):
         os.system('mkdir category\\' + category)
 
+
 def etape3(links_catgs):
+    st.subheader("📜 📖 Toutes les catégories de tout les livres du site  📖")
+
+    option = st.selectbox(
+        'Quel catégorie souhaitez-vous extraire ?',
+        (nom_catgs))
+
+    st.write('Vous avez selectionner :', option)
+    clé3 = "3"
+    for name in nom_catgs:
+        if option == name:
+            with open('category/'+ name + '/data_'+ name + '.csv') as all:
+                button = st.download_button(label='Download' + name + ' CSV', data=open('category/' + name + '/data_' + name + '.csv'),
+                                            file_name= 'data_' + name + '.csv',
+                                            mime='text/csv', key=clé3)
+                st.text(f'💾 🧛  Votre fichier CSV sur la catégorie ' + name + ' viens d\'être crée.')
+                st.text("Vous pouvez le télécharger !")
+
+
+
     for link in links_catgs:
         main_page = requests.get(link)
         # création de l'objet Soup
